@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Reciclagem: Sustentabilidade Brincando!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="jogo" id="jogoCanvas">
+        <img src="imagens/cursor.png" id="cursorCustomizado" alt="Cursor">
+
+        <!-- TOPO -->
+        <header class="topo">
+            <h1>🌳 JOGO DA RECICLAGEM: SUSTENTABILIDADE!</h1>
+            <div class="pontos">
+                Pontos: <span id="pontuacao">0</span> / 8
+            </div>
+        </header>
+
+        <!-- CENÁRIO -->
+        <main class="cenario">
+            <!-- LIXEIRAS -->
+            <div class="lixeiras">
+                <div class="lixeira papel" data-tipo="papel">
+                    <img src="imagens/lata de lixo papel.png" alt="Lixeira Papel">
+                </div>
+                <div class="lixeira plastico" data-tipo="plastico">
+                    <img src="imagens/lata de lixo plastica.png" alt="Lixeira Plástico">
+                </div>
+                <div class="lixeira metal" data-tipo="metal">
+                    <img src="imagens/lata de lixo metal.png" alt="Lixeira Metal">
+                </div>
+                <div class="lixeira vidro" data-tipo="vidro">
+                    <img src="imagens/lata de lixo vidro.png" alt="Lixeira Vidro">
+                </div>
+            </div>
+
+            <!-- OBJETOS -->
+            <div id="objetos"></div>
+
+            <!-- BALÃO DO ESQUILO -->
+            <div class="balao" id="balao">
+                <span id="fecharBalao">&times;</span>
+                <div class="texto-balao">
+                    <strong>ARRASTE</strong>
+                    Arraste o lixo até a lixeira correta!
+                </div>
+                <img src="imagens/esquilo.png" alt="Esquilo">
+            </div>
+
+            <!-- BOTÕES -->
+            <button id="btnAjuda">AJUDA</button>
+            <button id="btnReiniciar">REINICIAR</button>
+
+            <!-- MENSAGEM -->
+            <div id="mensagem">
+                Segure o lixo e arraste para o tambor!
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

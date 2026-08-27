@@ -1,0 +1,252 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    background: #222;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.jogo {
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: #c4aea2;
+}
+
+.jogo, .jogo *, .objeto, button, .cenario {
+    cursor: none !important;
+}
+
+#cursorCustomizado {
+    position: absolute;
+    width: 75px;
+    height: auto;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+    transform: translate(-15%, -5%);
+}
+
+/* TOPO */
+.topo {
+    height: 55px;
+    background: #ead9cf;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    border-bottom: 2px solid #77655d;
+    position: relative;
+    z-index: 50;
+}
+
+.topo h1 {
+    margin: 0;
+    font-size: 21px;
+    color: #333;
+}
+
+.pontos {
+    font-size: 21px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* CENÁRIO */
+.cenario {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 55px;
+    bottom: 0;
+    background-image: url("imagens/cenário.png");
+    background-size: 100% 100%;
+    background-position: center;
+    overflow: hidden;
+}
+
+.lixeiras {
+    position: absolute;
+    top: -1%;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    z-index: 10;
+}
+
+.lixeira {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lixeira.papel { left: 16%; width: 18%; }
+.lixeira.plastico { left: 32.1%; width: 18%; }
+.lixeira.metal { left: 50.3%; width: 18%; }
+.lixeira.vidro { left: 67%; width: 18%; }
+
+.lixeira img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    transform: scale(3.2);
+    transform-origin: center center;
+    filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.45));
+}
+
+#objetos {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+}
+
+.objeto {
+    position: absolute;
+    object-fit: contain;
+    touch-action: none;
+    filter: drop-shadow(0px 3px 0px #fff) 
+            drop-shadow(3px 0px 0px #fff) 
+            drop-shadow(0px -3px 0px #fff) 
+            drop-shadow(-3px 0px 0px #fff)
+            drop-shadow(3px 6px 8px rgba(0,0,0,0.45));
+    transition: transform .15s, opacity .3s;
+}
+
+.objeto:hover {
+    transform: scale(1.08);
+}
+
+.objeto.arrastando {
+    transform: scale(1.15) rotate(3deg);
+    z-index: 100;
+}
+
+.objeto.acertou {
+    animation: desaparecer .4s forwards;
+}
+
+@keyframes desaparecer {
+    100% {
+        transform: scale(.1) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+.balao {
+    position: absolute;
+    right: 2%;
+    top: 15%;
+    width: 28%;
+    min-width: 270px;
+    height: 140px;
+    background: linear-gradient(135deg, #ffffff 0%, #e8f9ff 100%);
+    border: 4px solid #48a9bc;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    z-index: 30;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+.balao::after {
+    content: "";
+    position: absolute;
+    left: -24px;
+    bottom: 25px;
+    border-style: solid;
+    border-width: 12px 24px 12px 0;
+    border-color: transparent #48a9bc transparent transparent;
+    transform: rotate(-10deg);
+}
+
+#fecharBalao {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #48a9bc;
+    line-height: 1;
+    z-index: 40;
+    padding: 4px;
+}
+
+#fecharBalao:hover {
+    color: #e63946;
+    transform: scale(1.2);
+}
+
+.texto-balao {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.3;
+    color: #2c4c54;
+    font-weight: 600;
+    flex: 1;
+}
+
+.texto-balao strong {
+    font-size: 22px;
+    color: #2e8b9e;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+    text-shadow: 1px 1px 0px #fff;
+}
+
+.balao img {
+    width: 160px;
+    height: 190px;
+    object-fit: contain;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+    margin-right: -15px;
+    margin-top: -15px;
+}
+
+button {
+    position: absolute;
+    bottom: 9px;
+    padding: 7px 14px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    background: #fffaf4;
+    font-weight: bold;
+    z-index: 50;
+}
+
+#btnAjuda { left: 8px; }
+#btnReiniciar { right: 8px; }
+button:hover { background: white; }
+
+#mensagem {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    background: rgba(70,60,55,.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 45;
+    font-size: 14px;
+}
+
+#mensagem.acerto { background: #23874c; font-weight: bold; }
+#mensagem.erro { background: #a93636; font-weight: bold; }
